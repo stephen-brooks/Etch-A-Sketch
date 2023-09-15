@@ -1,0 +1,25 @@
+
+#container {
+    display: flex;
+}
+
+#grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    height:100%;
+}
+
+.column {
+    border: solid .00001px blue;
+    min-height: fit-content;
+    min-width: fit-content;
+    width: 10px;
+    height: 10px;
+    overflow: auto;
+}
+
+.fill {
+    background-color: black;
+}
