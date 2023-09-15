@@ -9,20 +9,24 @@
 </head>
 <body>
     <header>Etch-a-Sketch</header>
-
-    <div id = 'selections'>
-        <div id="num_squares">
-            <input type="range" min="1" max="100" value="16" class="slider" id="myRange">
-            <p id="demo"></p>
-        </div> 
-
+    <div id = 'content'>
+        <div id='selections'>
+            <div class='input-box'>
+                <p class = 'subtext'>Choose your grid size</p>
+                <input type='range' min='1' max='100' value='16' class='slider' id='myRange'>
+                <p id="demo"></p>
+            </div>
+            <div class="input-box">
+                <p>Toggle RGB</p>
+                <input id = "toggleRGB" type="checkbox" onchange="toggleRGB(this)">
+            </div>
+            <div class="input-box">
+                <button onclick="resetGrid(16)">Reset Grid</button>
+            </div>
+        </div>
+    
+        <div id = 'container'></div>
     </div>
-   
-    <div id = 'container'>
-       
-    </div>
-
-
     <footer>Developed by SB Industries</footer>
 </body>
 </html>

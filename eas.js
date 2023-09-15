@@ -1,13 +1,26 @@
 // Define container and grid
 const container = document.getElementById('container');
 
-
-
 // Slider and slider values added here
 
 const slider = document.getElementById("myRange");
 const output = document.getElementById("demo");
 output.innerHTML = slider.value + ' x ' + slider.value; // Display the default slider value
+
+// Variable for choice of RGB checkbox, to be implemented on hovering
+let rgbChoice = false;
+
+function random_rgba() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return "rgb(" + r + "," + g + "," + b + ")";
+}
+
+function toggleRGB(checkboxElem) {
+    rgbChoice = checkboxElem.checked
+}
+
 
 // Create columns and rows of grid
 function createGrid(grid_size){
@@ -35,29 +48,33 @@ function createGrid(grid_size){
 
     columns.forEach((col)  => {
             col.addEventListener('mouseover', () => {
-                col.classList.add('fill')
+                col.classList.add('fill');
+                if (rgbChoice) {
+                    col.style.backgroundColor = random_rgba();
+                } else {
+                    col.style.backgroundColor = 'black';
+                }
             })
+            col.style.height = String(600/grid_size) + 'px';
+            col.style.width = String(600/grid_size) + 'px';
         }
     );
+}
+
+
+function resetGrid(grid_size){
+    oldGrid = document.getElementById('grid');
+    oldGrid.remove();
+    createGrid(grid_size);
 }
 
 // Update the current slider value (each time you drag the slider handle)
 
 slider.oninput = function() {
     
-    oldGrid = document.getElementById('grid');
-    oldGrid.remove();
+    resetGrid(slider.value);
     output.innerHTML = (this.value + ' x ' + this.value);
-    createGrid(slider.value);
-    // CSS Code
-    document.documentElement.style.setProperty(`--hw`, `'15px'`);
     
 };
 
-
-document.documentElement.style.setProperty(`--height`, `'20px'`);
-document.documentElement.style.setProperty(`--width`, `'10px'`);
-
-
 createGrid(slider.value);
-// Add hover effects to each element
